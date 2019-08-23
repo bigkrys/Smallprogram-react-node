@@ -1,0 +1,8 @@
+client/dist/
+deploy_versions/
+client/.temp/
+client/.rn_temp/
+client/node_modules/
+.DS_Store
+client/package-lock.json
+client/yarn-error.log

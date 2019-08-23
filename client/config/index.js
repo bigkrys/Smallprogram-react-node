@@ -1,7 +1,6 @@
-//默认配置
 const config = {
   projectName: 'client',
-  date: '2019-8-13',
+  date: '2019-8-23',
   designWidth: 750,
   deviceRatio: {
     '640': 2.34 / 2,
