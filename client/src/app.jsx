@@ -4,6 +4,7 @@ import Index from './pages/index'
 import counterStore from './store/counter'
 
 import './app.css'
+import SongListDetail from "./pages/songdetail/SongListDetail";
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
@@ -19,7 +20,10 @@ class App extends Component {
 
   config = {
     pages: [
-      'pages/index/index'
+      'pages/index/index',
+      'pages/songdetail/SongDetail',
+      'pages/songdetail/SongListDetail'
+
     ],
     window: {
       backgroundTextStyle: 'light',
