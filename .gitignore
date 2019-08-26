@@ -6,3 +6,6 @@ client/node_modules/
 .DS_Store
 client/package-lock.json
 client/yarn-error.log
+server/music/
+server/node_modules/
+sample/

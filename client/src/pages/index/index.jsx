@@ -2,9 +2,10 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Button, Text } from '@tarojs/components'
 import MySlider from '../../components/slider/MySlider'
 import SongList from '../../components/SongList/SongList'
+import List from '../../components/List/List'
 import './index.css'
 import dataStore from '../../store/dataStore';
-
+import {getInTheaters} from '../../components/utils/api'
 
 class Index extends Component {
 
@@ -384,13 +385,95 @@ class Index extends Component {
 
         ]
       },
-      songList2:[
+      hostList:[
         {
-          title: '逆光',
-          src:require('../../assets/img/niguang.jpg'),
-
+          id:1,
+          name:'逆光',
+          src:'',
+          lrc:'',
+          album:'逆光',
+          imgsrc:require('../../assets/img/niguang.jpg'),
+        },
+        {
+          id:2,
+          name:'梦游',
+          src:'',
+          lrc:'',
+          album:'逆光',
+          imgsrc:require('../../assets/img/niguang.jpg'),
+        },
+        {
+          id:3,
+          name:'咕叽咕叽',
+          src:'',
+          lrc:'',
+          album:'逆光',
+          imgsrc:require('../../assets/img/niguang.jpg'),
+        },
+        {
+          id:4,
+          name:'我怀念的',
+          src:'',
+          lrc:'',
+          imgsrc:require('../../assets/img/niguang.jpg'),
+        },
+        {
+          id:5,
+          name:'安宁',
+          src:'',
+          lrc:'',
+          album:'逆光',
+          imgsrc:require('../../assets/img/niguang.jpg'),
+        },
+        {
+          id:6,
+          name:'飘着',
+          src:'',
+          lrc:'',
+          album:'逆光',
+          imgsrc:require('../../assets/img/niguang.jpg'),
+        },
+        {
+          id:7,
+          name:'爱情的花样',
+          src:'',
+          lrc:'',
+          album:'逆光',
+          imgsrc:require('../../assets/img/niguang.jpg'),
+        },
+        {
+          id:8,
+          name:'漩涡',
+          src:'',
+          lrc:'',
+          album:'逆光',
+          imgsrc:require('../../assets/img/niguang.jpg'),
+        },
+        {
+          id:9,
+          name:'需要你',
+          src:'',
+          lrc:'',
+          album:'逆光',
+          imgsrc:require('../../assets/img/niguang.jpg'),
+        },
+        {
+          id:10,
+          name:'关于',
+          src:'',
+          lrc:'',
+          album:'逆光',
+          imgsrc:require('../../assets/img/niguang.jpg'),
+        },
+        {
+          id:11,
+          name:'outro',
+          src:'',
+          lrc:'',
+          album:'逆光',
+          imgsrc:require('../../assets/img/niguang.jpg'),
         }
-      ]
+      ],
     }
   }
   componentWillMount() {
@@ -406,6 +489,26 @@ class Index extends Component {
       }
     })
       .then(res => console.log(res))
+
+    Taro.getSetting()
+      .then(res=>{
+       console.log(res)
+      })
+      .then(res=>{
+        return Taro.getUserInfo();
+      })
+      .then(res=>{
+        console.log(res.userInfo)
+        Taro.setStorage({
+          key: 'user',
+          data: res.userInfo
+        })
+        //请求服务器资源
+        this.getList(res.userInfo.nickName);
+      })
+      .catch(err=>{
+        console.log(err)
+      })
   }
   componentWillReceiveProps(nextProps) {
     console.log(this.props, nextProps)
@@ -416,13 +519,22 @@ class Index extends Component {
   componentDidShow() { }
 
   componentDidHide() { }
-
+  getList = async (name) => {
+    const params = {
+      name:name
+    };
+    const res = await getInTheaters('/index');
+    this.setState({
+      list: res.data.subjects
+    });
+  }
   render() {
     return (
-      <View className='index'>
+      <View className='index' >
         <MySlider />
         <SongList title={this.state.songList.title} list={this.state.songList.list}/>
         <SongList title={this.state.songList.title} list={this.state.songList.list}/>
+        <List title='热门歌曲' list={this.state.hostList}/>
       </View>
     )
   }

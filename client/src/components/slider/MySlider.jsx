@@ -21,21 +21,21 @@ class MySlider extends Component {
                 circular
                 indicatorDots
                 autoplay>
-                <SwiperItem>
+                <SwiperItem   className='demo-text-1'>
                     <Image
-                        style={{ width: dataStore.screen.width, height: '150px',}}
+                        style={{ width: dataStore.screen.width, height: '150px',padding:'0 25px'}}
                         src={this.state.slider1}
                     />
                 </SwiperItem>
-                <SwiperItem>
+                <SwiperItem  className='demo-text-2'>
                     <Image
-                        style={{ width: dataStore.screen.width, height: '150px' }}
+                        style={{ width: dataStore.screen.width, height: '150px',padding:'0 25px' }}
                         src={this.state.slider2}
                     />
                 </SwiperItem>
-                <SwiperItem>
+                <SwiperItem  className='demo-text-3'>
                     <Image
-                        style={{ width: dataStore.screen.width, height: '150px' }}
+                        style={{ width: dataStore.screen.width, height: '150px',padding:'0 25px' }}
                         src={this.state.slider3}
                     />
                 </SwiperItem>
