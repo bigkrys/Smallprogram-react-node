@@ -23,19 +23,19 @@ class MySlider extends Component {
                 autoplay>
                 <SwiperItem   className='demo-text-1'>
                     <Image
-                        style={{ width: dataStore.screen.width, height: '150px',padding:'0 25px'}}
+                        style={{ width: dataStore.screen.width, height: '150px',padding:'0 25px',resizeMode:"contain"}}
                         src={this.state.slider1}
                     />
                 </SwiperItem>
                 <SwiperItem  className='demo-text-2'>
                     <Image
-                        style={{ width: dataStore.screen.width, height: '150px',padding:'0 25px' }}
+                      style={{ width: dataStore.screen.width, height: '150px',padding:'0 25px',resizeMode:"contain"}}
                         src={this.state.slider2}
                     />
                 </SwiperItem>
                 <SwiperItem  className='demo-text-3'>
                     <Image
-                        style={{ width: dataStore.screen.width, height: '150px',padding:'0 25px' }}
+                      style={{ width: dataStore.screen.width, height: '150px',padding:'0 25px',resizeMode:"contain"}}
                         src={this.state.slider3}
                     />
                 </SwiperItem>

@@ -9,3 +9,4 @@ client/yarn-error.log
 server/music/
 server/node_modules/
 sample/
+.idea/

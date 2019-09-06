@@ -21,17 +21,18 @@ export default class SongList extends Component {
               <Text style={{fontSize:'12px',fontWeight:'bold',color:color.gray}} onClick={this.clickMore}>更多></Text>
             </View>
             <View  style={{flex:1,display: 'flex',flexDirection:'row',flexWrap:'wrap',justifyContent:'center',alignItems:'center'}}>
-              {this.props.list.map((item,index) =>(
+              {this.props.list?this.props.list.map((item,index) =>(
                 <SongItem
                   title={item.title}
-                  src={item.src}
+                  imgsrc={item.imgsrc}
                   key={index}
                   className='at-col at-col-4'
                   id={item.id}
                   songlist={item.list}
                   intro={item.introduction}
+                  time={item.time}
                 />
-                ))}
+                )):null}
             </View>
 
           </View>

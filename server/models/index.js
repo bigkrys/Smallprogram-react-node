@@ -10,4 +10,7 @@ var indexSchema = new Schema({
 
 });
 // 将数据模型暴露出去
-module.exports = mongoose.model('index', indexSchema);
+module.exports = {
+    schema:indexSchema,
+    model:mongoose.model("Index",indexSchema)
+}

@@ -14,7 +14,7 @@ export default class List extends Component {
     console.log('我被点击了')
   }
   componentDidMount() {
-    console.log(this.props.list)
+    // console.log(this.props.list)
   }
 
   render() {
@@ -24,7 +24,7 @@ export default class List extends Component {
           <Text style={{fontSize:'14px',fontWeight:'bold'}}>{this.props.title}</Text>
         </View>
         <View  style={{flex:1}}>
-          {this.props.list.map((item,index) =>(
+          {this.props.list?this.props.list.map((item,index) =>(
             <ListItem
               title={item.name}
               src={item.src}
@@ -35,7 +35,7 @@ export default class List extends Component {
               album={item.album}
               img={item.imgsrc}
             />
-          ))}
+          )):null}
         </View>
 
       </View>

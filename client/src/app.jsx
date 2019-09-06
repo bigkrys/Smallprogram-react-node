@@ -2,9 +2,9 @@ import Taro, { Component } from '@tarojs/taro'
 import { Provider } from '@tarojs/mobx'
 import Index from './pages/index'
 import counterStore from './store/counter'
-
+import '@tarojs/async-await'
 import './app.css'
-import SongListDetail from "./pages/songdetail/SongListDetail";
+
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
@@ -17,7 +17,6 @@ const store = {
 }
 
 class App extends Component {
-
   config = {
     pages: [
       'pages/index/index',
@@ -31,21 +30,12 @@ class App extends Component {
       navigationBarTextStyle: 'black'
     }
   }
-
-  componentDidMount () {}
-
-  componentDidShow () {}
-
-  componentDidHide () {}
-
-  componentDidCatchError () {}
-
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数
   render () {
     return (
       <Provider store={store}>
-        <Index />
+        <Index/>
       </Provider>
     )
   }
