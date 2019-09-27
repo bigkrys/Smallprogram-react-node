@@ -31,6 +31,7 @@ export default class SongList extends Component {
                   songlist={item.list}
                   intro={item.introduction}
                   time={item.time}
+                  changeCurrent={this.props.changeCurrent}
                 />
                 )):null}
             </View>

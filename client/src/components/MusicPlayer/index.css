@@ -1,0 +1,26 @@
+.headerImg{
+
+}
+.rotate{
+  width:120px;
+  height:120px;
+  border-radius:60px;
+  animation: rotate 6s linear normal infinite;
+  animation-play-state:running;
+}
+.pause{
+  width:120px;
+  height:120px;
+  border-radius:60px;
+  animation: rotate 6s linear normal infinite;
+  animation-play-state:paused;
+}
+
+@keyframes rotate {
+  0%{
+   transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}

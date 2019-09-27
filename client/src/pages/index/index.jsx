@@ -7,6 +7,7 @@ import './index.css'
 import dataStore from '../../store/dataStore';
 import {getInTheaters} from '../../components/utils/api'
 import MusicPlayer from '../../components/MusicPlayer/MusicPlayer'
+var that
 class Index extends Component {
 
   config = {
@@ -474,7 +475,14 @@ class Index extends Component {
           imgsrc:require('../../assets/img/niguang.jpg'),
         }
       ],
+      currentMusic:{
+        title:'',
+        img:'',
+        src:''
+      }
     }
+    that = this
+    this.child = null
   }
   componentWillMount() {
     console.log('hello')
@@ -499,7 +507,7 @@ class Index extends Component {
         return Taro.getUserInfo();
       })
       .then(res=>{
-        // console.log(res.userInfo)
+        console.log(res.userInfo)
         Taro.setStorage({
           key: 'user',
           data: res.userInfo
@@ -521,28 +529,42 @@ class Index extends Component {
 
   componentDidHide() { }
   getList = async (name) => {
+    console.log('我在打开getlisy')
     const res = await getInTheaters('/index');
-    res.data.map((item,i)=>{
-      res.data[i].list = JSON.parse(item.list)
-      // console.log(res.data[i])
+    let index = res.data.index
+    console.log(index,res.data,'hhhh')
+    index.map((item,i)=>{
+      index[i].list = JSON.parse(item.list)
+      console.log(res.data[i])
     })
     let songList = {
       title:'专辑',
-      list:res.data
+      list:index
     }
-    console.log(songList)
     this.setState({
-      songList: songList
+      songList: songList,
+      hostList:res.data.hotlist
     });
+  }
+  changeCurrent(obj){
+    console.log(obj)
+    that.setState({
+      currentMusic:obj
+    },()=>{
+      that.child && that.child.ToPlay()
+    })
+
+  }
+  onRef = (ref) => {
+    this.child = ref
   }
   render() {
     return (
       <View className='index' >
         <MySlider />
-        <SongList title={this.state.songList.title} list={this.state.songList.list}/>
-        <SongList title={this.state.songList.title} list={this.state.songList.list}/>
-        <List title='热门歌曲' list={this.state.hostList}/>
-        <MusicPlayer/>
+        <SongList title={this.state.songList.title} list={this.state.songList.list} changeCurrent={this.changeCurrent}/>
+        <List title='热门歌曲' list={this.state.hostList} changeCurrent={this.changeCurrent} />
+        <MusicPlayer currentMusic={this.state.currentMusic} onRef={this.onRef}/>
       </View>
     )
   }

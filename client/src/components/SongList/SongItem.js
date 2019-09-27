@@ -12,10 +12,13 @@ import * as api from '../utils/api'
 export default class SongItem extends Component {
   routeToDetail = () => {
     let songlist = JSON.stringify(this.props.songlist)
+    console.log(typeof  this.changeCurrent)
      Taro.navigateTo({
-
-      url:`/pages/songdetail/SongListDetail?title=${this.props.title}&list=${songlist}&intro=${this.props.intro}&imgsrc=${api.domin+api.img+this.props.imgsrc}&time=${this.props.time}`
+      url:`/pages/songdetail/SongListDetail?title=${this.props.title}&list=${songlist}&intro=${this.props.intro}&imgsrc=${this.props.imgsrc}&time=${this.props.time}&changeCurrent=${this.changeCurrent}`
     })
+  }
+  changeCurrent(obj){
+    that.props.changeCurrent(obj)
   }
   render() {
     // console.log(this.props.time)

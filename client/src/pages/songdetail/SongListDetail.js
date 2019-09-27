@@ -3,39 +3,18 @@ import { View, Button, Text } from '@tarojs/components'
 import ListItem from '../../components/List/ListItem'
 import dataStore from "../../store/dataStore";
 import color from '../../components/utils/color'
+import SongItem from "../../components/SongList/SongItem";
+import * as api from "../../components/utils/api";
 export default class SongListDetail extends Component {
-  constructor(){
-    super()
-    this.state = {
-      list:[]
-    }
-
-  }
-  componentWillMount() {
-   let list = this.$router.params.list
-    list = JSON.parse(list)
-    this.setState({
-      list:list
-    })
-    console.log(this.$router.params)
-  }
-  componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps)
-  }
-
-  componentWillUnmount() { }
-
-  componentDidShow() { }
-
-  componentDidHide() { }
-
   render() {
-
+    let list = this.$router.params.list
+    list = JSON.parse(list)
+    console.log(typeof this.$router.params.changeCurrent)
     return (
       <View className='index'>
         <View style={{width:dataStore.screen.width+'px',height:'240px',backgroundColor:'#35498c',display:'flex',flexDirection:'row',alignItems:'center',flex:1}}>
           <View style={{marginLeft:'20px'}}>
-            <Image  src={this.$router.params.imgsrc} style={{width:'100px',height:'100px',borderRadius:'10px'}}/>
+            <Image  src={api.domin+api.img+this.$router.params.imgsrc} style={{width:'100px',height:'100px',borderRadius:'10px'}}/>
           </View>
           <View style={{ display:'flex',flexDirection:'column',flex:1,marginLeft:'20px'}}>
             <View style={{margin:'0 20px 20px'}}><Text  style={{color:'white',fontSize:'16px',fontWeight:'bold'}}>{this.$router.params.title}</Text></View>
@@ -53,15 +32,17 @@ export default class SongListDetail extends Component {
             <Image src={require('../../assets/img/icon/play.png')} style={{width:'20px',height:'20px',marginLeft:'20px'}}/>
             <Text style={{marginLeft:'20px'}}>播放全部</Text>
           </View>
-          {this.state.list.map((item,index) =>(
+          {list.map((item,index) =>(
             <ListItem
               title={item.name}
               key={index+1}
               index={index+1}
               className='at-col at-col-4'
               id={item.id}
-              album={item.album}
-              img={item.imgsrc}
+              src={item.src}
+              album={this.$router.params.title}
+              imgsrc={this.$router.params.imgsrc}
+              changeCurrent={this.$router.params.changeCurrent}
             />
           ))}
         </View>
